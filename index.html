@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Catálogo de Motocicletas · 2M Motos</title>
+    <!-- Google Fonts: Outfit + Inter -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Material Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ---------- RESET & VARIÁVEIS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E10600;
+            --red-dark: #B30000;
+            --black: #1A1A1A;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-400: #CBD5E1;
+            --gray-600: #475569;
+            --gray-900: #0F172A;
+            --white: #FFFFFF;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 20px 30px -8px rgba(225, 6, 0, 0.12);
+            --radius: 12px;
+            --font-title: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* ---------- FUNDO ANIMADO EM MOVIMENTO ---------- */
+        body {
+            font-family: var(--font-body);
+            background: radial-gradient(circle at 20% 30%, rgba(225, 6, 0, 0.02) 0%, transparent 28%),
+                radial-gradient(circle at 90% 70%, rgba(15, 23, 42, 0.02) 0%, transparent 30%),
+                linear-gradient(145deg, #f9fcff, #f1f6fa);
+            background-size: 200% 200%, 200% 200%, 100% 100%;
+            background-attachment: fixed;
+            color: var(--gray-900);
+            line-height: 1.5;
+            font-weight: 400;
+            animation: fundoMovimento 25s ease infinite alternate;
+        }
+
+        @keyframes fundoMovimento {
+            0% {
+                background-position: 0% 0%, 0% 0%, 0% 0%;
+            }
+
+            50% {
+                background-position: 15% 25%, 75% 60%, 0% 0%;
+            }
+
+            100% {
+                background-position: 25% 35%, 85% 70%, 0% 0%;
+            }
+        }
+
+        /* ---------- HEADER ---------- */
+        .header-2m {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(225, 6, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            height: 70px;
+            width: auto;
+            filter: drop-shadow(0 6px 8px rgba(225, 6, 0, 0.1));
+            transition: transform 0.25s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-text {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.02em;
+            border-left: 3px solid var(--red);
+            padding-left: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--white);
+            padding: 0.4rem 0.4rem 0.4rem 1.2rem;
+            border-radius: 60px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+
+        .user-email {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-900);
+        }
+
+        /* Botão Entrar mais discreto com ícone de engrenagem */
+        .btn-login {
+            background: transparent;
+            border: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: var(--gray-100);
+            color: var(--red);
+        }
+
+        .btn-login i {
+            font-size: 1.1rem;
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-600);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-logout:hover {
+            background: var(--gray-100);
+            border-color: var(--gray-600);
+        }
+
+        .btn-cadastro-moto {
+            background: var(--gray-900);
+            border: none;
+            color: white;
+            padding: 0.6rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-cadastro-moto:hover {
+            background: var(--red);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(225, 6, 0, 0.2);
+        }
+
+        /* ---------- FILTROS ---------- */
+        .filters-bar {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--gray-600);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-select,
+        .filter-input {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 40px;
+            font-family: var(--font-body);
+            background: white;
+            min-width: 140px;
+            font-size: 0.9rem;
+            transition: 0.15s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-select:focus,
+        .filter-input:focus {
+            border-color: var(--red);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.08);
+        }
+
+        /* ---------- GRADE DE MOTOS ---------- */
+        .catalogo-grid {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+        }
+
+        .moto-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        .moto-card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(225, 6, 0, 0.2);
+            transform: translateY(-6px);
+        }
+
+        /* --- ÁREA DE IMAGEM --- */
+        .moto-img {
+            height: 380px;
+            background: linear-gradient(145deg, #f9fcff, #f1f6fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0.75rem;
+        }
+
+        .img-principal-container {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+
+        .img-principal {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease, filter 0.3s ease;
+        }
+
+        .img-principal-container:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .img-principal-container:hover .img-principal {
+            transform: scale(1.06);
+        }
+
+        .sold-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: 18px;
+            pointer-events: none;
+        }
+
+        .sold-banner {
+            background: var(--red);
+            color: white;
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 2rem;
+            text-transform: uppercase;
+            padding: 0.8rem 2.5rem;
+            transform: rotate(-12deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid white;
+            letter-spacing: 6px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            animation: pulse-sold 2s infinite;
+        }
+
+        @keyframes pulse-sold {
+            0% {
+                opacity: 0.95;
+                transform: rotate(-12deg) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: rotate(-12deg) scale(1.05);
+            }
+
+            100% {
+                opacity: 0.95;
+                transform: rotate(-12deg) scale(1);
+            }
+        }
+
+        .img-thumbnails {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .img-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.15s;
+            background: var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .img-thumb:hover,
+        .img-thumb.active {
+            border-color: var(--red);
+            transform: scale(0.98);
+        }
+
+        .moto-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--red);
+            color: white;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 20;
+            letter-spacing: 0.8px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 8px rgba(225, 6, 0, 0.2);
+        }
+
+        .moto-tag-sold {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--gray-900);
+            color: white;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            z-index: 20;
+            border: 1.5px solid var(--red);
+            box-shadow: 0 0 16px rgba(225, 6, 0, 0.3);
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(2px);
+        }
+
+        .moto-info {
+            padding: 1.8rem 1.8rem 2rem;
+            flex: 1;
+        }
+
+        .moto-marca {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .moto-modelo {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+            line-height: 1.1;
+        }
+
+        .moto-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+            margin: 0.8rem 0 1.2rem;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            align-items: baseline;
+        }
+
+        .moto-specs span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .moto-preco {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin: 1rem 0 0.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .moto-preco small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-600);
+        }
+
+        .moto-descricao {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+            border-top: 1px dashed var(--gray-200);
+            padding-top: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-edit,
+        .btn-delete,
+        .btn-sold,
+        .btn-whatsapp-info {
+            padding: 0.6rem 1.4rem;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-edit {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .btn-edit:hover {
+            background: var(--gray-900);
+            color: white;
+        }
+
+        .btn-delete {
+            background: rgba(225, 6, 0, 0.08);
+            color: var(--red);
+        }
+
+        .btn-delete:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-sold {
+            background: var(--gray-900);
+            color: white;
+            border: 1px solid var(--red);
+        }
+
+        .btn-sold:hover {
+            background: var(--red);
+            border-color: var(--gray-900);
+        }
+
+        .btn-sold.active {
+            background: var(--red-dark);
+            border-color: var(--white);
+        }
+
+        .btn-whatsapp-info {
+            background: #25D366;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-whatsapp-info:hover {
+            background: #20b858;
+            transform: scale(0.98);
+        }
+
+        /* ---------- BOTÕES FLUTUANTES ---------- */
+        .floating-social {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 999;
+        }
+
+        .floating-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            transition: 0.25s ease;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            color: white;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-btn i {
+            font-size: 30px;
+        }
+
+        .floating-btn.instagram {
+            background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285AEB);
+        }
+
+        .floating-btn.website {
+            background: #1E3A5F;
+        }
+
+        .floating-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.12);
+            filter: brightness(1.08);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ---------- MODAIS ---------- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 2.2rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 70px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 6px solid var(--red);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            position: sticky;
+            top: 0;
+            background: transparent;
+            padding-bottom: 0.5rem;
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--gray-600);
+            transition: 0.15s;
+        }
+
+        .close-modal:hover {
+            color: var(--red);
+            transform: scale(1.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--gray-600);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 18px;
+            font-family: var(--font-body);
+            background: white;
+            transition: 0.15s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--red);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.06);
+        }
+
+        .btn-submit {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 1rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            background: var(--red-dark);
+            transform: scale(1.01);
+            box-shadow: 0 8px 18px rgba(225, 6, 0, 0.25);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ---------- MODAL DE VISUALIZAÇÃO DE IMAGEM ---------- */
+        .modal-imagem {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            flex-direction: column;
+        }
+
+        .modal-imagem-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-imagem-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 24px;
+            box-shadow: 0 0 40px rgba(225, 6, 0, 0.25);
+            border: 4px solid rgba(225, 6, 0, 0.3);
+            background: #fff;
+            object-fit: contain;
+            display: block;
+        }
+
+        .btn-fechar-imagem {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 2.2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-fechar-imagem:hover {
+            background: var(--red);
+            transform: scale(1.1);
+            border-color: white;
+        }
+
+        .btn-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-nav:hover {
+            background: var(--red);
+            transform: translateY(-50%) scale(1.1);
+            border-color: white;
+        }
+
+        .btn-prev {
+            left: 20px;
+        }
+
+        .btn-next {
+            right: 20px;
+        }
+
+        .contador-imagem {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.5rem 1.8rem;
+            border-radius: 60px;
+            letter-spacing: 1px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ---------- RODAPÉ ---------- */
+        .footer-2m {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border-top: 4px solid var(--red);
+        }
+
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-info h3 {
+            font-family: var(--font-title);
+            margin-bottom: 0.8rem;
+            color: white;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .footer-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.15s;
+        }
+
+        .footer-info a:hover {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: #94A3B8;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 700px) {
+            .header-2m {
+                padding: 1rem;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .filters-bar {
+                margin: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1.2rem;
+            }
+
+            .floating-social {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-btn {
+                width: 48px;
+                height: 48px;
+            }
+
+            .floating-btn i {
+                font-size: 26px;
+            }
+
+            .moto-img {
+                height: 300px;
+            }
+
+            .img-principal-container {
+                height: 200px;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                max-height: 90vh;
+            }
+
+            .btn-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 1.8rem;
+            }
+
+            .card-actions {
+                gap: 0.5rem;
+            }
+
+            .btn-edit,
+            .btn-delete,
+            .btn-sold,
+            .btn-whatsapp-info {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .sold-banner {
+                font-size: 1.5rem;
+                padding: 0.5rem 1.5rem;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header-2m">
+        <div class="logo-container">
+            <img class="logo" src="https://i.ibb.co/jPy9b9fZ/logo2.png" alt="2M Motos"
+                onerror="this.src='https://placehold.co/200x70/E10600/white?text=2M+MOTOS&font=outfit';">
+            <span class="logo-text">Catálogo de Motocicletas</span>
+        </div>
+
+        <div class="nav-actions">
+            <div id="userMenu" class="user-menu hidden">
+                <span class="material-symbols-outlined" style="color: var(--red);">account_circle</span>
+                <span id="userEmailDisplay" class="user-email"></span>
+                <button id="logoutBtn" class="btn-logout">Sair</button>
+            </div>
+            <!-- Botão Entrar discreto com ícone de engrenagem -->
+            <button id="loginBtn" class="btn-login">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button id="cadastroMotoBtn" class="btn-cadastro-moto hidden">
+                <span class="material-symbols-outlined">add</span> Anunciar Moto
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== BARRA DE FILTROS ========== -->
+    <div class="filters-bar">
+        <div class="filter-group">
+            <label>Marca</label>
+            <select id="filterMarca" class="filter-select">
+                <option value="">Todas</option>
+                <option value="Honda">Honda</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Kawasaki">Kawasaki</option>
+                <option value="BMW">BMW</option>
+                <option value="Harley-Davidson">Harley-Davidson</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Preço até</label>
+            <select id="filterPreco" class="filter-select">
+                <option value="">Qualquer</option>
+                <option value="20000">R$ 20k</option>
+                <option value="40000">R$ 40k</option>
+                <option value="60000">R$ 60k</option>
+                <option value="80000">R$ 80k</option>
+                <option value="100000">R$ 100k</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Ano</label>
+            <select id="filterAno" class="filter-select">
+                <option value="">Todos</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Cor</label>
+            <input type="text" id="filterCor" class="filter-input" placeholder="Ex: Vermelho" value="">
+        </div>
+    </div>
+
+    <!-- ========== GRADE DE MOTOS ========== -->
+    <div id="motosGrid" class="catalogo-grid">
+        <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+            <span class="material-symbols-outlined" style="font-size: 4rem; color: var(--gray-600);">motorcycle</span>
+            <h3 style="margin-top: 1rem; font-weight: 500;">Carregando catálogo...</h3>
+        </div>
+    </div>
+
+    <!-- ========== RODAPÉ ========== -->
+    <footer class="footer-2m">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>2M Motos</h3>
+                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">location_on</span> Av J2 Qd 63 Lt
+                    19/20 Loja 3</p>
+                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">call</span> (62) 3085-5377</p>
+                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">mail</span> <a
+                        href="mailto:contato@2mmotos.com.br">contato@2mmotos.com.br</a></p>
+                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">chat</span> <a
+                        href="https://wa.me/5562991873663" target="_blank">(62) 99187-3663</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 2M Motos. Todos os direitos reservados. Catálogo 2M Motos.
+        </div>
+    </footer>
+
+    <!-- ========== BOTÕES FLUTUANTES ========== -->
+    <div class="floating-social">
+        <a href="#" target="_blank" class="floating-btn instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" target="_blank" class="floating-btn website" aria-label="Site">
+            <i class="fas fa-globe"></i>
+        </a>
+        <a href="https://wa.me/5562991873663" target="_blank" class="floating-btn whatsapp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ========== MODAL DE LOGIN ========== -->
+    <div id="modalLogin" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ENTRAR</h2>
+                <button class="close-modal"
+                    onclick="document.getElementById('modalLogin').style.display='none'">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="loginEmail" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="loginSenha" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL DE CADASTRO/EDIÇÃO DE MOTO ========== -->
+    <div id="modalMoto" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 id="modalMotoTitle">Cadastrar Moto</h2>
+                <button class="close-modal"
+                    onclick="document.getElementById('modalMoto').style.display='none'">&times;</button>
+            </div>
+            <form id="formMoto">
+                <input type="hidden" id="motoId" value="">
+
+                <div class="form-row" style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex:1;">
+                        <label>MARCA</label>
+                        <input type="text" id="marca" placeholder="ex: Honda">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>ANO</label>
+                        <input type="number" id="ano" placeholder="2026">
+                    </div>
+                </div>
+
+                <div class="form-row" style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex:1;">
+                        <label>PREÇO (R$)</label>
+                        <input type="number" id="preco" placeholder="15900">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>CILINDRADA</label>
+                        <input type="text" id="cilindrada" placeholder="ex: 300">
+                    </div>
+                </div>
+
+                <div class="form-row" style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex:1;">
+                        <label>COR</label>
+                        <input type="text" id="cor" placeholder="azul">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>KM</label>
+                        <input type="number" id="km" placeholder="7800">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>MODELO *</label>
+                    <input type="text" id="modelo" placeholder="CB500" required>
+                </div>
+
+                <fieldset
+                    style="border: 1px solid var(--gray-200); border-radius: 18px; padding: 1.2rem; margin-bottom: 1.5rem;">
+                    <legend
+                        style="font-weight: 600; color: var(--red); padding: 0 0.8rem; font-size: 0.8rem; text-transform: uppercase;">
+                        IMAGENS (URLs) - até 4</legend>
+                    <div class="form-group">
+                        <label>IMAGEM PRINCIPAL (URL 1)</label>
+                        <input type="url" id="imagemUrl1" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>IMAGEM 2 (URL)</label>
+                        <input type="url" id="imagemUrl2" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>IMAGEM 3 (URL)</label>
+                        <input type="url" id="imagemUrl3" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>IMAGEM 4 (URL)</label>
+                        <input type="url" id="imagemUrl4" placeholder="https://...">
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label>DESCRIÇÃO</label>
+                    <textarea id="descricao" rows="2"
+                        placeholder="ex: moto de alta cilindrada, macia, para off road"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" id="salvarMotoBtn">Publicar anúncio</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL DE VISUALIZAÇÃO DE IMAGEM ========== -->
+    <div id="modalVisualizarImagem" class="modal-imagem">
+        <div class="modal-imagem-content">
+            <button class="btn-fechar-imagem" id="fecharModalImagemBtn">&times;</button>
+            <button class="btn-nav btn-prev" id="prevImageBtn">&#10094;</button>
+            <img id="imagemAmpliada" class="modal-imagem-img" src="" alt="Imagem ampliada">
+            <button class="btn-nav btn-next" id="nextImageBtn">&#10095;</button>
+            <div id="contadorImagem" class="contador-imagem"></div>
+        </div>
+    </div>
+
+    <script>
+        // -------------------------------------------------------------
+        // CONFIGURAÇÃO BASEROW
+        // -------------------------------------------------------------
+        const BASEROW = {
+            token: 'qKIgfLN57iiG7V25oEFAfFkNe95DyhQ1',
+            tableMotosId: '836316',
+            tableUsuariosId: '836314'
+        };
+
+        const API_MOTOS = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableMotosId}/?user_field_names=true`;
+        const API_USUARIOS = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableUsuariosId}/?user_field_names=true`;
+
+        // Número de WhatsApp da loja
+        const WHATSAPP_NUMBER = '5562991873663';
+        const WHATSAPP_BASE_URL = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP_NUMBER + '&text&type=phone_number&app_absent=0';
+
+        // -------------------------------------------------------------
+        // ESTADO DA APLICAÇÃO
+        // -------------------------------------------------------------
+        let usuarioLogado = null;
+        let todasMotos = [];
+
+        // -------------------------------------------------------------
+        // ELEMENTOS DA UI
+        // -------------------------------------------------------------
+        const userMenu = document.getElementById('userMenu');
+        const userEmailSpan = document.getElementById('userEmailDisplay');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const cadastroMotoBtn = document.getElementById('cadastroMotoBtn');
+        const motosGrid = document.getElementById('motosGrid');
+        const modalLogin = document.getElementById('modalLogin');
+        const modalMoto = document.getElementById('modalMoto');
+        const formMoto = document.getElementById('formMoto');
+        const modalMotoTitle = document.getElementById('modalMotoTitle');
+        const motoIdField = document.getElementById('motoId');
+
+        // Elementos do modal de imagem
+        const modalImagem = document.getElementById('modalVisualizarImagem');
+        const imagemAmpliada = document.getElementById('imagemAmpliada');
+        const contadorImagem = document.getElementById('contadorImagem');
+        const btnFecharImagem = document.getElementById('fecharModalImagemBtn');
+        const btnPrev = document.getElementById('prevImageBtn');
+        const btnNext = document.getElementById('nextImageBtn');
+
+        // Variáveis para navegação
+        let imagensAtuais = [];
+        let indiceAtual = 0;
+
+        // -------------------------------------------------------------
+        // FUNÇÕES DO MODAL DE IMAGEM
+        // -------------------------------------------------------------
+        function abrirModalImagem(motoId, indiceInicial = 0) {
+            const moto = todasMotos.find(m => m.id == motoId);
+            if (!moto) return;
+
+            imagensAtuais = [
+                moto.Imagem_URL1,
+                moto.Imagem_URL2,
+                moto.Imagem_URL3,
+                moto.Imagem_URL4
+            ].filter(url => url && typeof url === 'string' && url.trim() !== '');
+
+            if (imagensAtuais.length === 0) return;
+
+            indiceAtual = Math.min(Math.max(0, indiceInicial), imagensAtuais.length - 1);
+            imagemAmpliada.src = imagensAtuais[indiceAtual];
+            atualizarContador();
+
+            if (imagensAtuais.length <= 1) {
+                btnPrev.style.display = 'none';
+                btnNext.style.display = 'none';
+                contadorImagem.style.display = 'none';
+            } else {
+                btnPrev.style.display = 'flex';
+                btnNext.style.display = 'flex';
+                contadorImagem.style.display = 'block';
+            }
+
+            modalImagem.style.display = 'flex';
+        }
+
+        function fecharModalImagem() {
+            modalImagem.style.display = 'none';
+            imagemAmpliada.src = '';
+        }
+
+        function navegarImagem(direcao) {
+            if (imagensAtuais.length === 0) return;
+            indiceAtual += direcao;
+            if (indiceAtual < 0) indiceAtual = imagensAtuais.length - 1;
+            if (indiceAtual >= imagensAtuais.length) indiceAtual = 0;
+            imagemAmpliada.src = imagensAtuais[indiceAtual];
+            atualizarContador();
+        }
+
+        function atualizarContador() {
+            if (imagensAtuais.length > 1) {
+                contadorImagem.textContent = `${indiceAtual + 1} / ${imagensAtuais.length}`;
+            }
+        }
+
+        window.abrirModalImagem = abrirModalImagem;
+        window.fecharModalImagem = fecharModalImagem;
+        window.navegarImagem = navegarImagem;
+
+        // -------------------------------------------------------------
+        // FUNÇÃO PARA GERAR LINK DO WHATSAPP
+        // -------------------------------------------------------------
+        function gerarLinkWhatsApp(moto) {
+            const marca = moto.Marca || '';
+            const modelo = moto.Modelo || '';
+            const mensagem = `Olá, tenho interesse na moto ${marca} ${modelo} anunciada no catálogo 2M Motos. Poderia me dar mais informações?`;
+            const textoCodificado = encodeURIComponent(mensagem);
+            return `https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${textoCodificado}&type=phone_number&app_absent=0`;
+        }
+
+        // -------------------------------------------------------------
+        // AUTENTICAÇÃO
+        // -------------------------------------------------------------
+        function verificarSessao() {
+            const stored = localStorage.getItem('usuario2m');
+            if (stored) {
+                usuarioLogado = JSON.parse(stored);
+                atualizarUIporAuth();
+                return true;
+            }
+            return false;
+        }
+
+        function atualizarUIporAuth() {
+            if (usuarioLogado) {
+                userMenu.classList.remove('hidden');
+                userEmailSpan.textContent = usuarioLogado.email;
+                loginBtn.classList.add('hidden');
+                cadastroMotoBtn.classList.remove('hidden');
+            } else {
+                userMenu.classList.add('hidden');
+                loginBtn.classList.remove('hidden');
+                cadastroMotoBtn.classList.add('hidden');
+            }
+        }
+
+        async function fazerLogin(email, senha) {
+            try {
+                const url = `${API_USUARIOS}&filter__email__equal=${encodeURIComponent(email)}`;
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `Token ${BASEROW.token}` }
+                });
+                const data = await response.json();
+                const usuarios = data.results;
+
+                if (usuarios && usuarios.length > 0) {
+                    const user = usuarios[0];
+                    if (user.senha === senha) {
+                        usuarioLogado = {
+                            id: user.id,
+                            email: user.email,
+                            nome: user.nome
+                        };
+                        localStorage.setItem('usuario2m', JSON.stringify(usuarioLogado));
+                        atualizarUIporAuth();
+                        modalLogin.style.display = 'none';
+                        alert(`Bem-vindo, ${user.nome}!`);
+                        carregarMotos();
+                        return true;
+                    }
+                }
+                alert('E-mail ou senha inválidos.');
+                return false;
+            } catch (error) {
+                console.error('Erro no login:', error);
+                alert('Erro ao conectar com Baserow.');
+            }
+        }
+
+        function fazerLogout() {
+            usuarioLogado = null;
+            localStorage.removeItem('usuario2m');
+            atualizarUIporAuth();
+            carregarMotos();
+        }
+
+        // -------------------------------------------------------------
+        // CRUD DE MOTOS (com campo Vendido)
+        // -------------------------------------------------------------
+        async function carregarMotos() {
+            try {
+                const response = await fetch(API_MOTOS, {
+                    headers: { 'Authorization': `Token ${BASEROW.token}` }
+                });
+                const data = await response.json();
+                todasMotos = data.results || [];
+                aplicarFiltros();
+            } catch (error) {
+                console.error('Erro ao carregar motos:', error);
+                motosGrid.innerHTML = '<div class="empty-state">Erro ao carregar catálogo.</div>';
+            }
+        }
+
+        function renderizarGaleria(moto) {
+            const imagens = [
+                moto.Imagem_URL1,
+                moto.Imagem_URL2,
+                moto.Imagem_URL3,
+                moto.Imagem_URL4
+            ].filter(url => url && url.trim() !== '');
+
+            if (imagens.length === 0) {
+                return `
+                    <div class="img-principal-container" data-moto-id="${moto.id}" data-indice="0">
+                        <span style="font-size: 4rem;">🏍️</span>
+                    </div>
+                `;
+            }
+
+            let html = `
+                <div class="img-principal-container" data-moto-id="${moto.id}" data-indice="0">
+                    <img class="img-principal" id="img-principal-${moto.id}" src="${imagens[0]}" alt="${moto.Modelo}" onerror="this.parentElement.innerHTML='<span style=\'font-size:4rem;\'>🏍️</span>';">
+                    ${moto.Vendido ? `
+                        <div class="sold-overlay">
+                            <div class="sold-banner">VENDIDO</div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            if (imagens.length > 1) {
+                html += `<div class="img-thumbnails">`;
+                imagens.forEach((url, index) => {
+                    html += `
+                        <img class="img-thumb ${index === 0 ? 'active' : ''}" 
+                             src="${url}" 
+                             alt="Thumb ${index + 1}"
+                             onclick="event.stopPropagation(); trocarImagemPrincipal('${moto.id}', '${url}', this)"
+                             onerror="this.src='https://placehold.co/60x60/ccc/white?text=🏍️';">
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            return html;
+        }
+
+        window.trocarImagemPrincipal = function (motoId, novaUrl, thumbElement) {
+            const imgPrincipal = document.getElementById(`img-principal-${motoId}`);
+            if (imgPrincipal) {
+                imgPrincipal.src = novaUrl;
+                const thumbs = document.querySelectorAll(`.moto-card[data-id="${motoId}"] .img-thumb`);
+                thumbs.forEach(t => t.classList.remove('active'));
+                thumbElement.classList.add('active');
+            }
+        };
+
+        window.toggleVendido = async function (motoId, statusAtual) {
+            if (!usuarioLogado) return;
+            try {
+                const url = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableMotosId}/${motoId}/?user_field_names=true`;
+                const response = await fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Token ${BASEROW.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Vendido: !statusAtual
+                    })
+                });
+                if (response.ok) {
+                    carregarMotos();
+                } else {
+                    alert('Erro ao atualizar status de vendido.');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro de conexão.');
+            }
+        };
+
+        function renderizarMotos(motos) {
+            if (!motos || motos.length === 0) {
+                motosGrid.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined" style="font-size:4rem;">motorcycle</span><h3 style="font-weight:400;">Nenhuma moto encontrada</h3></div>';
+                return;
+            }
+
+            let html = '';
+            motos.forEach(moto => {
+                const isOwner = usuarioLogado && moto.criado_por === usuarioLogado.email;
+                const galeriaHtml = renderizarGaleria(moto);
+                const vendido = moto.Vendido === true;
+                const linkWhatsApp = gerarLinkWhatsApp(moto);
+
+                html += `
+                    <div class="moto-card" data-id="${moto.id}">
+                        <div class="moto-img">
+                            ${galeriaHtml}
+                            <span class="moto-tag">${moto.Ano || 'Novo'}</span>
+                            ${vendido ? '<span class="moto-tag-sold">VENDIDO</span>' : ''}
+                        </div>
+                        <div class="moto-info">
+                            <div class="moto-marca">${moto.Marca || ''}</div>
+                            <div class="moto-modelo">${moto.Modelo || 'Sem modelo'}</div>
+                            <div class="moto-specs">
+                                <span>⏰ ${moto.Cilindrada || '—'}</span>
+                                <span>🚗 ${moto.Cor || '—'}</span>
+                                <span>KM ${moto.Quilometragem ? moto.Quilometragem.toLocaleString() + ' km' : '0 km'}</span>
+                            </div>
+                            <div class="moto-preco">
+                                R$ ${moto.Preco ? moto.Preco.toLocaleString('pt-BR') : '0'} <small>à vista</small>
+                            </div>
+                            ${moto.Descricao ? `<div class="moto-descricao">${moto.Descricao}</div>` : ''}
+                            <div class="card-actions">
+                                <a href="${linkWhatsApp}" target="_blank" class="btn-whatsapp-info">
+                                    <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Mais informações
+                                </a>
+                                ${isOwner ? `
+                                    <button class="btn-edit" onclick="editarMoto(${moto.id})">
+                                        <span class="material-symbols-outlined" style="font-size:1.1rem;">edit</span> Editar
+                                    </button>
+                                    <button class="btn-delete" onclick="deletarMoto(${moto.id})">
+                                        <span class="material-symbols-outlined" style="font-size:1.1rem;">delete</span> Excluir
+                                    </button>
+                                    <button class="btn-sold ${vendido ? 'active' : ''}" onclick="toggleVendido(${moto.id}, ${vendido})">
+                                        <span class="material-symbols-outlined" style="font-size:1.1rem;">${vendido ? 'check_circle' : 'sell'}</span>
+                                        ${vendido ? 'Disponível' : 'Vendido'}
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            motosGrid.innerHTML = html;
+        }
+
+        function aplicarFiltros() {
+            let filtradas = [...todasMotos];
+            const marca = document.getElementById('filterMarca').value;
+            const precoMax = document.getElementById('filterPreco').value;
+            const ano = document.getElementById('filterAno').value;
+            const cor = document.getElementById('filterCor').value.trim().toLowerCase();
+
+            if (marca) filtradas = filtradas.filter(m => m.Marca === marca);
+            if (precoMax) filtradas = filtradas.filter(m => m.Preco <= parseInt(precoMax));
+            if (ano) filtradas = filtradas.filter(m => m.Ano == ano);
+            if (cor) filtradas = filtradas.filter(m => m.Cor && m.Cor.toLowerCase().includes(cor));
+
+            renderizarMotos(filtradas);
+        }
+
+        function abrirCadastroMoto() {
+            if (!usuarioLogado) {
+                alert('Faça login para anunciar.');
+                return;
+            }
+            formMoto.reset();
+            motoIdField.value = '';
+            modalMotoTitle.textContent = 'Cadastrar Moto';
+            document.getElementById('salvarMotoBtn').textContent = 'Publicar anúncio';
+            modalMoto.style.display = 'flex';
+        }
+
+        window.editarMoto = async function (id) {
+            if (!usuarioLogado) return;
+            try {
+                const url = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableMotosId}/${id}/?user_field_names=true`;
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `Token ${BASEROW.token}` }
+                });
+                const moto = await response.json();
+
+                motoIdField.value = moto.id;
+                document.getElementById('modelo').value = moto.Modelo || '';
+                document.getElementById('marca').value = moto.Marca || '';
+                document.getElementById('ano').value = moto.Ano || '';
+                document.getElementById('preco').value = moto.Preco || '';
+                document.getElementById('cilindrada').value = moto.Cilindrada || '';
+                document.getElementById('cor').value = moto.Cor || '';
+                document.getElementById('km').value = moto.Quilometragem || '';
+                document.getElementById('descricao').value = moto.Descricao || '';
+                document.getElementById('imagemUrl1').value = moto.Imagem_URL1 || '';
+                document.getElementById('imagemUrl2').value = moto.Imagem_URL2 || '';
+                document.getElementById('imagemUrl3').value = moto.Imagem_URL3 || '';
+                document.getElementById('imagemUrl4').value = moto.Imagem_URL4 || '';
+
+                modalMotoTitle.textContent = 'Editar Moto';
+                document.getElementById('salvarMotoBtn').textContent = 'Salvar alterações';
+                modalMoto.style.display = 'flex';
+            } catch (error) {
+                console.error('Erro ao carregar moto:', error);
+            }
+        };
+
+        formMoto.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!usuarioLogado) return;
+
+            const dadosMoto = {
+                Modelo: document.getElementById('modelo').value,
+                Marca: document.getElementById('marca').value,
+                Ano: parseInt(document.getElementById('ano').value) || null,
+                Preco: parseFloat(document.getElementById('preco').value) || 0,
+                Cilindrada: document.getElementById('cilindrada').value,
+                Cor: document.getElementById('cor').value,
+                Quilometragem: parseInt(document.getElementById('km').value) || 0,
+                Descricao: document.getElementById('descricao').value,
+                Imagem_URL1: document.getElementById('imagemUrl1').value || null,
+                Imagem_URL2: document.getElementById('imagemUrl2').value || null,
+                Imagem_URL3: document.getElementById('imagemUrl3').value || null,
+                Imagem_URL4: document.getElementById('imagemUrl4').value || null,
+                criado_por: usuarioLogado.email,
+                Vendido: false
+            };
+
+            const id = motoIdField.value;
+            let url = API_MOTOS;
+            let method = 'POST';
+
+            if (id) {
+                url = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableMotosId}/${id}/?user_field_names=true`;
+                method = 'PATCH';
+                delete dadosMoto.Vendido;
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Authorization': `Token ${BASEROW.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dadosMoto)
+                });
+                if (response.ok) {
+                    alert(id ? 'Moto atualizada!' : 'Moto cadastrada!');
+                    modalMoto.style.display = 'none';
+                    carregarMotos();
+                } else {
+                    const erro = await response.text();
+                    console.error('Erro na resposta:', erro);
+                    alert('Erro ao salvar. Verifique os campos.');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro de conexão.');
+            }
+        });
+
+        window.deletarMoto = async function (id) {
+            if (!usuarioLogado) return;
+            if (!confirm('Tem certeza que deseja excluir este anúncio?')) return;
+
+            try {
+                const url = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableMotosId}/${id}/?user_field_names=true`;
+                const response = await fetch(url, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Token ${BASEROW.token}` }
+                });
+                if (response.ok) {
+                    alert('Moto excluída!');
+                    carregarMotos();
+                } else {
+                    alert('Erro ao excluir.');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        };
+
+        // -------------------------------------------------------------
+        // EVENT LISTENERS
+        // -------------------------------------------------------------
+        function initEventListeners() {
+            motosGrid.addEventListener('click', function (e) {
+                const container = e.target.closest('.img-principal-container');
+                if (container) {
+                    const motoId = container.dataset.motoId;
+                    const indice = parseInt(container.dataset.indice || '0');
+                    abrirModalImagem(motoId, indice);
+                }
+            });
+
+            btnFecharImagem.addEventListener('click', fecharModalImagem);
+            btnPrev.addEventListener('click', () => navegarImagem(-1));
+            btnNext.addEventListener('click', () => navegarImagem(1));
+
+            modalImagem.addEventListener('click', function (e) {
+                if (e.target === modalImagem) {
+                    fecharModalImagem();
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (modalImagem.style.display === 'flex') {
+                    if (e.key === 'Escape') {
+                        fecharModalImagem();
+                    } else if (e.key === 'ArrowLeft') {
+                        navegarImagem(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        navegarImagem(1);
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            verificarSessao();
+            carregarMotos();
+            initEventListeners();
+
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const senha = document.getElementById('loginSenha').value;
+                fazerLogin(email, senha);
+            });
+
+            cadastroMotoBtn.addEventListener('click', abrirCadastroMoto);
+            logoutBtn.addEventListener('click', fazerLogout);
+            loginBtn.addEventListener('click', () => {
+                modalLogin.style.display = 'flex';
+            });
+
+            document.getElementById('filterMarca').addEventListener('change', aplicarFiltros);
+            document.getElementById('filterPreco').addEventListener('change', aplicarFiltros);
+            document.getElementById('filterAno').addEventListener('change', aplicarFiltros);
+            document.getElementById('filterCor').addEventListener('input', aplicarFiltros);
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modalLogin) modalLogin.style.display = 'none';
+                if (e.target === modalMoto) modalMoto.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>
