@@ -41,31 +41,29 @@
             --font-body: 'Inter', sans-serif;
         }
 
-        /* ---------- FUNDO ANIMADO EM MOVIMENTO ---------- */
+        /* Fundo animado com gradiente em movimento */
         body {
             font-family: var(--font-body);
-            background: radial-gradient(circle at 20% 30%, rgba(225, 6, 0, 0.02) 0%, transparent 28%),
-                radial-gradient(circle at 90% 70%, rgba(15, 23, 42, 0.02) 0%, transparent 30%),
-                linear-gradient(145deg, #f9fcff, #f1f6fa);
-            background-size: 200% 200%, 200% 200%, 100% 100%;
-            background-attachment: fixed;
             color: var(--gray-900);
             line-height: 1.5;
             font-weight: 400;
-            animation: fundoMovimento 25s ease infinite alternate;
+            background: linear-gradient(132deg, #f9fcff, #f1f6fa, #eef2f6, #f5f9fd);
+            background-size: 300% 300%;
+            animation: gradientMove 18s ease infinite;
+            min-height: 100vh;
         }
 
-        @keyframes fundoMovimento {
+        @keyframes gradientMove {
             0% {
-                background-position: 0% 0%, 0% 0%, 0% 0%;
+                background-position: 0% 50%;
             }
 
             50% {
-                background-position: 15% 25%, 75% 60%, 0% 0%;
+                background-position: 100% 50%;
             }
 
             100% {
-                background-position: 25% 35%, 85% 70%, 0% 0%;
+                background-position: 0% 50%;
             }
         }
 
@@ -137,29 +135,30 @@
             color: var(--gray-900);
         }
 
-        /* Botão Entrar mais discreto com ícone de engrenagem */
+        /* Botão de login discreto - apenas engrenagem */
         .btn-login {
             background: transparent;
             border: none;
             color: var(--gray-600);
-            font-weight: 500;
-            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 40px;
+            justify-content: center;
+            padding: 0.4rem;
+            border-radius: 50%;
             transition: 0.2s;
             cursor: pointer;
+            width: 40px;
+            height: 40px;
         }
 
         .btn-login:hover {
-            background: var(--gray-100);
+            background: var(--gray-200);
             color: var(--red);
+            transform: rotate(30deg);
         }
 
-        .btn-login i {
-            font-size: 1.1rem;
+        .btn-login span {
+            font-size: 1.6rem;
         }
 
         .btn-logout {
@@ -208,7 +207,7 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 1.5rem 2rem;
-            margin: 1.5rem 2rem;
+            margin: 1.5rem 2rem 0.5rem;
             border-radius: 20px;
             box-shadow: var(--shadow-sm);
             border: 1px solid rgba(255, 255, 255, 0.6);
@@ -323,6 +322,7 @@
             transform: scale(1.06);
         }
 
+        /* --- OVERLAY DE VENDIDO --- */
         .sold-overlay {
             position: absolute;
             top: 0;
@@ -847,22 +847,126 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* ---------- RODAPÉ ---------- */
+        /* ---------- RODAPÉ REFORMULADO ---------- */
         .footer-2m {
             background: var(--gray-900);
             color: white;
-            padding: 3rem 2rem;
+            padding: 3rem 2rem 2rem;
             margin-top: 3rem;
             border-top: 4px solid var(--red);
         }
 
-        .footer-content {
+        .footer-container {
             max-width: 1440px;
             margin: 0 auto;
+        }
+
+        .footer-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-highlight-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-highlight-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-highlight-title i {
+            color: var(--red);
+            font-size: 1.3rem;
+        }
+
+        .footer-highlight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-highlight-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: #E2E8F0;
+        }
+
+        .footer-highlight-list li i {
+            color: var(--red);
+            font-size: 0.9rem;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .footer-brand-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .footer-brand-list span {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .footer-contact-highlight {
+            background: rgba(225, 6, 0, 0.15);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            border-left: 4px solid var(--red);
+            font-weight: 500;
+            color: #E2E8F0;
+        }
+
+        .footer-contact-highlight a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px solid var(--red);
+        }
+
+        .footer-contact-highlight a:hover {
+            color: var(--red);
+        }
+
+        .footer-slogan {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--red);
+            font-size: 1rem;
+        }
+
+        .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
         }
 
         .footer-info h3 {
@@ -896,10 +1000,11 @@
 
         .copyright {
             text-align: center;
-            margin-top: 2.5rem;
             font-size: 0.8rem;
             color: #94A3B8;
             letter-spacing: 0.3px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
         }
 
         @media (max-width: 700px) {
@@ -973,6 +1078,17 @@
                 padding: 0.5rem 1.5rem;
                 letter-spacing: 4px;
             }
+
+            .footer-highlights {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -993,9 +1109,9 @@
                 <span id="userEmailDisplay" class="user-email"></span>
                 <button id="logoutBtn" class="btn-logout">Sair</button>
             </div>
-            <!-- Botão Entrar discreto com ícone de engrenagem -->
-            <button id="loginBtn" class="btn-login">
-                <i class="fas fa-cog"></i>
+            <!-- Botão de login discreto com engrenagem -->
+            <button id="loginBtn" class="btn-login" title="Entrar">
+                <span class="material-symbols-outlined">settings</span>
             </button>
             <button id="cadastroMotoBtn" class="btn-cadastro-moto hidden">
                 <span class="material-symbols-outlined">add</span> Anunciar Moto
@@ -1054,20 +1170,69 @@
 
     <!-- ========== RODAPÉ ========== -->
     <footer class="footer-2m">
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>2M Motos</h3>
-                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">location_on</span> Av J2 Qd 63 Lt
-                    19/20 Loja 3</p>
-                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">call</span> (62) 3085-5377</p>
-                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">mail</span> <a
-                        href="mailto:contato@2mmotos.com.br">contato@2mmotos.com.br</a></p>
-                <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">chat</span> <a
-                        href="https://wa.me/5562991873663" target="_blank">(62) 99187-3663</a></p>
+        <div class="footer-container">
+            <!-- SEÇÃO INSTITUCIONAL (DESTAQUES, FACILIDADES, MARCAS) -->
+            <div class="footer-highlights">
+                <div class="footer-highlight-block">
+                    <div class="footer-highlight-title">
+                        <i class="fas fa-star"></i> Destaque
+                    </div>
+                    <ul class="footer-highlight-list">
+                        <li><i class="fas fa-check-circle"></i> Disponível para pronta entrega</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Atendemos em todo o Brasil</li>
+                    </ul>
+                </div>
+                <div class="footer-highlight-block">
+                    <div class="footer-highlight-title">
+                        <i class="fas fa-credit-card"></i> Facilidades de pagamento
+                    </div>
+                    <ul class="footer-highlight-list">
+                        <li><i class="fas fa-hand-holding-usd"></i> Entrada de 65% + saldo restante em até 24x via nota
+                            promissória</li>
+                        <li><i class="fas fa-credit-card"></i> Parcelamento em até 21x no cartão de crédito</li>
+                        <li><i class="fas fa-motorcycle"></i> Aceitamos sua moto usada como parte do pagamento</li>
+                        <li><i class="fas fa-university"></i> Financiamento bancário com entrada média de 20%</li>
+                    </ul>
+                </div>
+                <div class="footer-highlight-block">
+                    <div class="footer-highlight-title">
+                        <i class="fas fa-trophy"></i> Por que escolher a 2M Motos?
+                    </div>
+                    <p style="color: #E2E8F0; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                        Somos especialistas em motocicletas, com as melhores condições de mercado. Trabalhamos com todas
+                        as principais marcas do Brasil:
+                    </p>
+                    <div class="footer-brand-list">
+                        <span>Honda</span> <span>Yamaha</span> <span>Suzuki</span> <span>Kawasaki</span>
+                        <span>BMW</span> <span>Harley Davidson</span> <span>KTM</span> <span>Royal Enfield</span>
+                    </div>
+                    <div class="footer-contact-highlight">
+                        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        Entre em contato agora mesmo e receba fotos, vídeos e informações completas pelo
+                        <a href="https://wa.me/5562991873663" target="_blank">WhatsApp</a>!
+                    </div>
+                    <div class="footer-slogan">
+                        2M Motos – A sua moto está aqui!
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="copyright">
-            © 2026 2M Motos. Todos os direitos reservados. Catálogo 2M Motos.
+
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>2M Motos</h3>
+                    <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">location_on</span> Av J2 Qd 63
+                        Lt 19/20 Loja 3</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">call</span> (62) 3085-5377</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">mail</span> <a
+                            href="mailto:contato@2mmotos.com.br">contato@2mmotos.com.br</a></p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1.2rem;">chat</span> <a
+                            href="https://wa.me/5562991873663" target="_blank">(62) 99187-3663</a></p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2026 2M Motos. Todos os direitos reservados. Catálogo premium com Baserow.
+            </div>
         </div>
     </footer>
 
@@ -1131,7 +1296,9 @@
                 <div class="form-row" style="display: flex; gap: 1rem;">
                     <div class="form-group" style="flex:1;">
                         <label>PREÇO (R$)</label>
-                        <input type="number" id="preco" placeholder="15900">
+                        <!-- Campo com máscara de moeda -->
+                        <input type="text" id="preco" placeholder="R$ 0,00" oninput="mascaraMoeda(this)"
+                            onkeypress="return apenasNumeros(event)">
                     </div>
                     <div class="form-group" style="flex:1;">
                         <label>CILINDRADA</label>
@@ -1202,6 +1369,28 @@
 
     <script>
         // -------------------------------------------------------------
+        // FUNÇÕES DE MÁSCARA DE MOEDA
+        // -------------------------------------------------------------
+        function apenasNumeros(e) {
+            const char = String.fromCharCode(e.keyCode);
+            return /[0-9]/.test(char);
+        }
+
+        function mascaraMoeda(input) {
+            let v = input.value.replace(/\D/g, '');
+            v = (v / 100).toFixed(2) + '';
+            v = v.replace('.', ',');
+            v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            input.value = 'R$ ' + v;
+        }
+
+        function desmascararMoeda(valor) {
+            if (!valor) return 0;
+            const numero = valor.replace(/[R$\s.]/g, '').replace(',', '.');
+            return parseFloat(numero) || 0;
+        }
+
+        // -------------------------------------------------------------
         // CONFIGURAÇÃO BASEROW
         // -------------------------------------------------------------
         const BASEROW = {
@@ -1213,9 +1402,7 @@
         const API_MOTOS = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableMotosId}/?user_field_names=true`;
         const API_USUARIOS = `https://api.baserow.io/api/database/rows/table/${BASEROW.tableUsuariosId}/?user_field_names=true`;
 
-        // Número de WhatsApp da loja
         const WHATSAPP_NUMBER = '5562991873663';
-        const WHATSAPP_BASE_URL = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP_NUMBER + '&text&type=phone_number&app_absent=0';
 
         // -------------------------------------------------------------
         // ESTADO DA APLICAÇÃO
@@ -1238,7 +1425,6 @@
         const modalMotoTitle = document.getElementById('modalMotoTitle');
         const motoIdField = document.getElementById('motoId');
 
-        // Elementos do modal de imagem
         const modalImagem = document.getElementById('modalVisualizarImagem');
         const imagemAmpliada = document.getElementById('imagemAmpliada');
         const contadorImagem = document.getElementById('contadorImagem');
@@ -1246,7 +1432,6 @@
         const btnPrev = document.getElementById('prevImageBtn');
         const btnNext = document.getElementById('nextImageBtn');
 
-        // Variáveis para navegação
         let imagensAtuais = [];
         let indiceAtual = 0;
 
@@ -1385,7 +1570,7 @@
         }
 
         // -------------------------------------------------------------
-        // CRUD DE MOTOS (com campo Vendido)
+        // CRUD DE MOTOS
         // -------------------------------------------------------------
         async function carregarMotos() {
             try {
@@ -1493,6 +1678,11 @@
                 const vendido = moto.Vendido === true;
                 const linkWhatsApp = gerarLinkWhatsApp(moto);
 
+                // FORMATAÇÃO DO PREÇO COM 2 CASAS DECIMAIS (MÁSCARA NO CARD)
+                const precoFormatado = moto.Preco
+                    ? moto.Preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                    : '0,00';
+
                 html += `
                     <div class="moto-card" data-id="${moto.id}">
                         <div class="moto-img">
@@ -1509,7 +1699,7 @@
                                 <span>KM ${moto.Quilometragem ? moto.Quilometragem.toLocaleString() + ' km' : '0 km'}</span>
                             </div>
                             <div class="moto-preco">
-                                R$ ${moto.Preco ? moto.Preco.toLocaleString('pt-BR') : '0'} <small>à vista</small>
+                                R$ ${precoFormatado} <small>à vista</small>
                             </div>
                             ${moto.Descricao ? `<div class="moto-descricao">${moto.Descricao}</div>` : ''}
                             <div class="card-actions">
@@ -1576,7 +1766,10 @@
                 document.getElementById('modelo').value = moto.Modelo || '';
                 document.getElementById('marca').value = moto.Marca || '';
                 document.getElementById('ano').value = moto.Ano || '';
-                document.getElementById('preco').value = moto.Preco || '';
+                if (moto.Preco) {
+                    const precoInput = document.getElementById('preco');
+                    precoInput.value = 'R$ ' + moto.Preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
                 document.getElementById('cilindrada').value = moto.Cilindrada || '';
                 document.getElementById('cor').value = moto.Cor || '';
                 document.getElementById('km').value = moto.Quilometragem || '';
@@ -1598,11 +1791,14 @@
             e.preventDefault();
             if (!usuarioLogado) return;
 
+            const precoInput = document.getElementById('preco');
+            const precoNumerico = desmascararMoeda(precoInput.value);
+
             const dadosMoto = {
                 Modelo: document.getElementById('modelo').value,
                 Marca: document.getElementById('marca').value,
                 Ano: parseInt(document.getElementById('ano').value) || null,
-                Preco: parseFloat(document.getElementById('preco').value) || 0,
+                Preco: precoNumerico,
                 Cilindrada: document.getElementById('cilindrada').value,
                 Cor: document.getElementById('cor').value,
                 Quilometragem: parseInt(document.getElementById('km').value) || 0,
